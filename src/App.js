@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Home from './pages/Home';
 import Students from './pages/Students';
-import Classes from './pages/Classes';
+import Turmas from './pages/Turmas';
 import NavigationBar from './components/NavigationBar'
+import Footer from './components/Footer';
+import Jumb from './components/Jumb';
 
 
 function App() {
@@ -12,10 +14,22 @@ function App() {
     <Router>
       <NavigationBar />
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route path='/students' component={Students} />
-        <Route path='/classes' component={Classes} />
+        <Route exact path='/'>
+          <Jumb title='Olá,' active />
+          <Home />
+        </Route>
+
+        <Route path='/students'>
+          <Jumb title='/ Alunos' />
+          <Students />
+        </Route>
+        
+        <Route path='/turmas'>
+          <Jumb title='/ Turmas' />
+          <Turmas />
+        </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 }

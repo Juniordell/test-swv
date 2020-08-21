@@ -1,0 +1,15 @@
+.container__main {
+    display: flex;
+}
+
+.container__card {
+    height: 400px;
+    margin: 20px 0 15px;
+}
+
+.input-group>.input-group-append>.btn {
+    width: 100% !important;
+    justify-content: space-between !important;
+    display: flex !important;
+    align-items: center !important;
+}
