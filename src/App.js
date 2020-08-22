@@ -8,6 +8,8 @@ import NavigationBar from './components/NavigationBar'
 import Footer from './components/Footer';
 import Jumb from './components/Jumb';
 
+import './styles/responsive.css'
+import './styles/globalStyles.css'
 
 function App() {
   return (
@@ -27,6 +29,10 @@ function App() {
         <Route path='/turmas'>
           <Jumb title='/ Turmas' />
           <Turmas />
+        </Route>
+
+        <Route>
+          <Jumb title='404 - Page not found' />
         </Route>
       </Switch>
       <Footer />

@@ -3,8 +3,9 @@
 }
 
 .container__card {
+    height: 400px;
     margin: 20px 0 15px;
-    min-width: 245px !important;
+    width: 48%;
 }
 
 .input-group>.input-group-append>.btn {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button, Modal, Table } from 'react-bootstrap'
 
-function ModalTab({ title, children, ths, show, handleClose, student, turmas }) {
+function ModalTab({ title, children, ths, show, handleClose, students, turmas }) {
   return (
 
     <Modal
@@ -30,12 +30,12 @@ function ModalTab({ title, children, ths, show, handleClose, student, turmas }) 
         </thead>
           
         <tbody>
-            { student &&
-            student.map(student => (
+            { students &&
+            students.map(student => (
               <tr style={{textAlign: 'center'}}>
                 <td>{student.nome}</td>
                 <td>{student.data_nascimento}</td>
-                <td>{student.sexo}</td>
+                <td>{student.sexo === 'M' ? 'Masculino' : 'Feminino'}</td>
                 <td>{student.nome_turma}</td>
               </tr>
             )) }

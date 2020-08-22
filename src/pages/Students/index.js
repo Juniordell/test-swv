@@ -10,6 +10,7 @@ import ModalTab from '../../components/ModalTab';
 import MiniModal from '../../components/MiniModal'
 import Input from '../../components/Input';
 
+
 function Students() {
 
   // Sing up States
@@ -28,7 +29,6 @@ function Students() {
   const [ name, setName ] = useState(' ')
   const [ errorSearch, setErrorSearch ] = useState(false)
 
-  // const [ sexo, setSexo ] = useState('')
   const [ showAllStudents, setShowAllStudents ] = useState(false)
   const handleClose = () => setShowAllStudents(false)
   const handleShow = () => setShowAllStudents(true)
@@ -58,11 +58,13 @@ function Students() {
     }
 
     else {
+      setErrorSearch(false)
       const rightTurma = turmas.filter(turma => turma.nome === dropTurmas)
       const newTurma = rightTurma[0].id_turma
       const thisStudent = await api.get(`/alunos?nome=${name}&sexo=${dropSexo}&id_turma=${newTurma}`)
+
       setStudent(thisStudent)
-      console.log(thisStudent, student)
+
       handleShowOne()
     }
 
@@ -95,137 +97,145 @@ function Students() {
     <Container>
       
       <div className='container__main' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Card className='container__card w-100 mr-3 py-5 px-3'>
+        <Card className='container__card pb-3 pt-5 px-3 justify-content-between'>
 
           { error &&
             <p style={{ color: 'red', position: 'absolute', top: 15 }}>Algo deu errado, confira os dados!</p>
           }
           <h2>Cadastrar Aluno</h2>
 
-          <Input icon={<BsPersonFill />}>
-            <FormControl
-              placeholder="Nome Completo do Aluno"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-              onChange={text => setNome(text.target.value)}
-            />
-          </Input>
+          <div>
+            <Input icon={<BsPersonFill />}>
+              <FormControl
+                placeholder="Nome Completo do Aluno"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                onChange={text => setNome(text.target.value)}
+              />
+            </Input>
 
-          <Input icon={<BsFillCalendarFill />}>
-            <FormControl
-              placeholder="Data de Nascimento do Aluno"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-              onChange={text => setData_nascimento(text.target.value)}
-            />
-          </Input>
+            <Input icon={<BsFillCalendarFill />}>
+              <FormControl
+                placeholder="Data de Nascimento do Aluno"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                onChange={text => setData_nascimento(text.target.value)}
+              />
+            </Input>
 
-          <Input icon={<BsCircle />}>
-            <DropdownButton
-              as={InputGroup.Append}
-              variant="outline-secondary"
-              title={sexo}
-              className='w-100'
-            >
-              
-              <Dropdown.Item
-                eventKey='F'
-                onSelect={value => setSexo(value)}
+            <Input icon={<BsCircle />}>
+              <DropdownButton
+                as={InputGroup.Append}
+                variant="outline-secondary"
+                title={sexo}
+                className='w-100'
               >
-                F
-              </Dropdown.Item>
-
-              <Dropdown.Item
-                eventKey='M'
-                onSelect={value => setSexo(value)}
-              >
-                M
-              </Dropdown.Item>
-            </DropdownButton>
-          </Input>
-          
-          <Input icon={<BsPeopleFill />}>
-            <DropdownButton
-              as={InputGroup.Append}
-              variant="outline-secondary"
-              title={turmaPost}
-              className='w-100'
-            >
-              
-              { turmas.map(turma => (
-                <Dropdown.Item
-                  eventKey={turma.nome}
-                  onSelect={value => setTurmaPost(value)}
-                >
-                  {turma.nome}
                 
+                <Dropdown.Item
+                  eventKey='F'
+                  onSelect={value => setSexo(value)}
+                >
+                  F
                 </Dropdown.Item>
-              )) }
-            </DropdownButton>
-          </Input>
+
+                <Dropdown.Item
+                  eventKey='M'
+                  onSelect={value => setSexo(value)}
+                >
+                  M
+                </Dropdown.Item>
+              </DropdownButton>
+            </Input>
+            
+            <Input icon={<BsPeopleFill />}>
+              <DropdownButton
+                as={InputGroup.Append}
+                variant="outline-secondary"
+                title={turmaPost}
+                className='w-100'
+              >
+                
+                { turmas.map(turma => (
+                  <Dropdown.Item
+                    eventKey={turma.nome}
+                    onSelect={value => setTurmaPost(value)}
+                  >
+                    {turma.nome}
+                  
+                  </Dropdown.Item>
+                )) }
+              </DropdownButton>
+            </Input>
+
+          </div>
+
 
           <Button className='p-2 ml-auto' onClick={postAluno}>Cadastrar Aluno</Button>
 
         </Card>
 
-        <Card className='container__card w-100 py-5 px-3'>
+        <Card className='container__card pb-3 pt-5 px-3 justify-content-between'>
           { errorSearch &&
             <p style={{ color: 'red', position: 'absolute', top: 15 }}>Algo deu errado, confira os dados!</p>
           }
           <h2>Pesquisar Aluno</h2>
 
-          <Input icon={<BsPersonFill />}>
-            <FormControl
-              onChange={text => setName(text.target.value)}
-              placeholder="Nome Completo do Aluno"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          </Input>
+          <div>
+            <Input icon={<BsPersonFill />}>
+              <FormControl
+                onChange={text => setName(text.target.value)}
+                placeholder="Nome Completo do Aluno"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+              />
+            </Input>
 
-          <Input icon={<BsCircle />}>
-            <DropdownButton
-              as={InputGroup.Append}
-              variant="outline-secondary"
-              title={dropSexo}
-              className='w-100'
-            >
-              
-              <Dropdown.Item
-                eventKey='F'
-                onSelect={value => setDropSexo(value)}
+            <Input icon={<BsCircle />}>
+              <DropdownButton
+                as={InputGroup.Append}
+                variant="outline-secondary"
+                title={dropSexo}
+                className='w-100'
               >
-                F
-              </Dropdown.Item>
-
-              <Dropdown.Item
-                eventKey='M'
-                onSelect={value => setDropSexo(value)}
-              >
-                M
-              </Dropdown.Item>
-            </DropdownButton>
-          </Input>
-          
-          <Input icon={<BsPeopleFill />}>
-            <DropdownButton
-              as={InputGroup.Append}
-              variant="outline-secondary"
-              title={dropTurmas}
-              className='w-100'
-            >
-              
-              { turmas.map(turma => (
-                <Dropdown.Item
-                  eventKey={turma.nome}
-                  onSelect={value => setDropTurmas(value)}
-                >
-                  {turma.nome}
                 
+                <Dropdown.Item
+                  eventKey='F'
+                  onSelect={value => setDropSexo(value)}
+                >
+                  F
                 </Dropdown.Item>
-              )) }
-            </DropdownButton>
-          </Input>
+
+                <Dropdown.Item
+                  eventKey='M'
+                  onSelect={value => setDropSexo(value)}
+                >
+                  M
+                </Dropdown.Item>
+              </DropdownButton>
+            </Input>
+            
+            <Input icon={<BsPeopleFill />}>
+              <DropdownButton
+                as={InputGroup.Append}
+                variant="outline-secondary"
+                title={dropTurmas}
+                className='w-100'
+              >
+                
+                { turmas.map(turma => (
+                  <Dropdown.Item
+                    eventKey={turma.nome}
+                    onSelect={value => setDropTurmas(value)}
+                  >
+                    {turma.nome}
+                  
+                  </Dropdown.Item>
+                )) }
+              </DropdownButton>
+            </Input>
+          </div>
+
+
 
           <Button className='p-2 ml-auto' onClick={getStudent}>Buscar Aluno</Button>
         </Card>
@@ -238,7 +248,7 @@ function Students() {
         ths={['Aluno', 'Data de Nascimento', 'Sexo', 'Turma']}
         show={showAllStudents}
         handleClose={handleClose}
-        student={allStudents}
+        students={allStudents}
       />
 
       <ModalTab
@@ -246,7 +256,7 @@ function Students() {
         ths={['Aluno', 'Data de Nascimento', 'Sexo', 'Turma']}
         show={showStudents}
         handleClose={handleCloseOne}
-        student={student.data}
+        students={student.data}
       />
 
       <MiniModal 
