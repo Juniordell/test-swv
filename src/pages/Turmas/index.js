@@ -78,7 +78,7 @@ function Turmas() {
       <Container>
               
         <div className='container__main' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Card className='container__card w-100 mr-4 pb-3 pt-5 px-3 justify-content-between'>
+          <Card className='container__card pb-3 pt-5 px-3 justify-content-between'>
             { error &&
               <p style={{ color: 'red', position: 'absolute', top: 15 }}>Algo deu errado, confira os dados!</p>
             }
@@ -100,7 +100,7 @@ function Turmas() {
             <Button className='p-2 ml-auto' onClick={postTurma}>Cadastrar Turma</Button>
           </Card>
 
-          <Card className='container__card w-100 ml-4 pb-3 pt-5 px-3 justify-content-between'>
+          <Card className='container__card pb-3 pt-5 px-3 justify-content-between'>
             { errorSearch &&
               <p style={{ color: 'red', position: 'absolute', top: 15 }}>Algo deu errado, confira os dados!</p>
             }
@@ -141,12 +141,12 @@ function Turmas() {
           turmas={turmas}
         />
 
-      <MiniModal 
-        show={showMiniModal}
-        title='Cadastro de Turma'
-        text='Cadastro realizado com sucesso!'
-        handleClose={closeMiniModal}
-      />
+        <MiniModal 
+          show={showMiniModal}
+          title='Cadastro de Turma'
+          text='Cadastro realizado com sucesso!'
+          handleClose={closeMiniModal}
+        />
 
       </Container>
   );

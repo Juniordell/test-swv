@@ -14,10 +14,11 @@ function Home() {
       <div className='homeSearch'>
         <FormControl
           style={{ maxWidth: 900 }}
-          placeholder="Nome Completo do Aluno"
+          placeholder={choice === 'Alunos' ? 'Nome Completo do Aluno' : 'Descrição da Turma'}
           aria-label="Username"
           aria-describedby="basic-addon1"
         />
+
         <DropdownButton
           as={InputGroup.Append}
           variant="outline-secondary"
